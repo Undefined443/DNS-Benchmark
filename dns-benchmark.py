@@ -129,7 +129,7 @@ def main():
         # 居中显示 >> Benchmark for {domain} <<
         print(f"{'>> Benchmark for ' + domain + ' <<':^{separator_length}s}")
         for nameserver, query_time in sorted_query_times.items():
-            print(f"{nameserver:60s} {query_time:>4}")
+            print(f"{nameserver:60s} {query_time:>18}")
 
     print(separator_line)
 
