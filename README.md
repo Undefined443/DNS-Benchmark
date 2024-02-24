@@ -21,3 +21,10 @@ brew install knot
 ```sh
 ./dns_benchmark.py
 ````
+
+## 部分公共 DNS 提供商
+
+[阿里云 DNS](https://www.alidns.com/)
+
+[腾讯 DNSPod](https://www.dnspod.cn/products/publicdns)
+

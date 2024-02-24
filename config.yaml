@@ -1,34 +1,44 @@
-nameserver:
+nameservers:
   # IPv4
-  - 223.5.5.5 # 阿里 DNS，有时无法连接
-  - 223.6.6.6 # 阿里备用 DNS  500 ms 级
-  - 114.114.114.114 # 电信 114 DNS  TIMEOUT 级
-  - 119.29.29.29 # 腾讯 DNSPod  600 ms 级
-  - 8.8.8.8 # Google DNS  500ms 级
-  - 8.8.4.4
-  - 94.140.14.14 # AdGuard DNS  300 ms 级
-  - 1.1.1.1 # Cloudflare DNS  600 ms 级
+  - "223.5.5.5" # 阿里 DNS，有时无法连接
+  - "223.6.6.6" # 阿里备用 DNS  500 ms 级
+  - "114.114.114.114" # 114DNS  TIMEOUT 级
+  - "114.114.115.115" # 114DNS
+  - "119.29.29.29" # 腾讯 DNSPod  600 ms 级
+  - "180.76.76.76" # 百度 DNS
+  - "8.8.8.8" # Google DNS  500ms 级
+  - "8.8.4.4" # Google DNS
+  - "94.140.14.14" # AdGuard DNS  300 ms 级
+  - "1.1.1.1" # Cloudflare DNS  600 ms 级
+  # - "127.0.0.1"
 
   # IPv6
-  - 2400:3200::1 # Quad9  600 ms 级
-  - 2a10:50c0::ad1:ff # CleanBrowsing  200 ms 级
-  - 2001:4860:4860::8888 # Google  TIMEOUT 级
-  - 2606:4700:4700::1111 # Cloudflare  TIMEOUT 级
+  - "2400:3200::1" # 阿里 DNS
+  - "2400:3200:baba::1" # 阿里 DNS
+  - "2402:4e00::" # 腾讯 DNSPod
+  - "2a10:50c0::ad1:ff" # CleanBrowsing  200 ms 级
+  - "2001:4860:4860::8888" # Google  TIMEOUT 级
+  - "2606:4700:4700::1111" # Cloudflare  TIMEOUT 级
 
   # 加密 DNS
-  - https://dns.alidns.com/dns-query # 阿里 DoH  100ms 级
-  - tls://dns.alidns.com # 阿里 DoT  100ms 级
-  - https://doh.pub/dns-query # 腾讯 DoH  500ms 级
-  - https://dns.cloudflare.com/dns-query # Cloudflare  1200ms 级
-  - tls://1dot1dot1dot1.cloudflare-dns.com # Cloudflare TIMEOUT 级
-  - https://dns.google/dns-query # Google  500ms 级
-  - tls://dns.google # Google  3000 ms 级
-  - tls://dns.adguard-dns.com # AdGuard  500ms 级
-  - quic://dns.adguard-dns.com # AdGuard  TIMEOUT 级
-  # - 127.0.0.1
+  - "https://dns.alidns.com/dns-query" # 阿里 DoH  100ms 级
+  - "tls://dns.alidns.com" # 阿里 DoT  100ms 级
+  - "https://doh.pub/dns-query" # 腾讯 DoH DNSPod  500ms 级
+  - "https://1.12.12.12/dns-query" # 腾讯 DNSPod DoH(IP)
+  - "https://120.53.53.53/dns-query" # 腾讯 DNSPod DoH(IP)
+  - "https://sm2.doh.pub/dns-query" # 腾讯 DNSPod DoH(国密)
+  - "tls://dot.pub" # 腾讯 DNSPod DoT
+  - "tls://1.12.12.12" # 腾讯 DNSPod DoT(IP)
+  - "tls://120.53.53.53" # 腾讯 DNSPod DoT(IP)
+  - "https://dns.cloudflare.com/dns-query" # Cloudflare  1200ms 级
+  - "tls://1dot1dot1dot1.cloudflare-dns.com" # Cloudflare TIMEOUT 级
+  #  - https://dns.google/dns-query # Google  500ms 级   常年 TIMEOUT
+  - "tls://dns.google" # Google  3000 ms 级
+  - "tls://dns.adguard-dns.com" # AdGuard  500ms 级
+  - "quic://dns.adguard-dns.com" # AdGuard  TIMEOUT 级
 
 # 测试域名
-domain:
+domains:
   - baidu.com
   - google.com
   - store.steampowered.com
@@ -44,3 +54,11 @@ domain:
   - www.google-analytics.com
   - hm.baidu.com
   - api.segment.io
+  - a.quora.com
+  - munchkin.marketo.net
+  - js-agent.newrelic.com
+  - static.doubleclick.net
+  - js.hs-scripts.com
+  - adservice.google.com
+  - tracking.g2crowd.com
+  - adservice.google.com

@@ -14,8 +14,8 @@ if ! command -v shyaml &> /dev/null; then
 fi
 
 # Read the configuration from the YAML file
-nameservers=("${(@f)$(shyaml get-values nameserver < "$CONFIG_FILE")}")
-domains=("${(@f)$(shyaml get-values domain < "$CONFIG_FILE")}")
+nameservers=("${(@f)$(shyaml get-values nameservers < "$CONFIG_FILE")}")
+domains=("${(@f)$(shyaml get-values domains < "$CONFIG_FILE")}")
 
 # Function to perform DNS query
 perform_dns_query() {
