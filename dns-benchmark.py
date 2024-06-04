@@ -19,20 +19,21 @@ class DnsQueryThread(threading.Thread):
 
         self.nameserver = _nameserver
         self.domain = _domain
-        self.command = None
+        self.command = []
 
         self.header = {
-            "status": None,
-            "answer": None,
+            "status": "",
+            "answer": [],
         }
-        self.answer = None
-        self.code = None
-        self.query_result = None
+        self.answer = []
+        self.code = 0
+        self.query_result = ""
         self.query_time = None
         self.execution_time = None
 
     def run(self):
         start_time = time.time()  # 线程开始时的时间戳
+        # print(f"\033[1;32m[+] Querying {self.domain} from \033[1;34m{self.nameserver}\033[0m")
         option = ""
         if self.nameserver.startswith("https://"):
             self.nameserver = self.nameserver[len("https://") :]
@@ -97,9 +98,7 @@ class DnsQueryThread(threading.Thread):
                     r";; ANSWER SECTION:\n(.*IN\s+CNAME.*\n)*(.*IN\s+A\s+\d+\.\d+\.\d+\.\d+)*",
                     self.query_result,
                 ).group(2)
-                self.answer = re.search(
-                    r".*IN\s+A\s+(\d+\.\d+\.\d+\.\d+)", search
-                ).group(1)
+                self.answer = re.findall(r"\b(?:\d{1,3}\.){3}\d{1,3}\b", search)
             except Exception:
                 # stderr
                 print("line 104: answer section failed", file=stderr)
@@ -107,6 +106,7 @@ class DnsQueryThread(threading.Thread):
             self.code = DnsQueryThread.ERROR
         end_time = time.time()  # 线程结束时的时间戳
         self.execution_time = end_time - start_time
+        # print(f"\033[1;31m[-] Querying {self.domain} from \033[1;34m{self.nameserver}\033[1;31m finished. Time: {self.execution_time:.2f}s\033[0m")
         return
 
 
@@ -147,7 +147,7 @@ def main():
 
             if query_thread.code is DnsQueryThread.ERROR:
                 query_time = query_thread.header["status"]
-            elif query_thread.answer == "0.0.0.0" or query_thread.answer == "127.0.0.1":
+            elif query_thread.answer[0] == "0.0.0.0" or query_thread.answer[0] == "127.0.0.1":
                 query_time = "POISONED"
             else:
                 query_time = query_thread.query_time
